@@ -9,51 +9,116 @@
     <title>Technical Document</title>
 </head>
 <body>
+    <nav id="navbar">
+        <h1>REACT Documentation</h1>
+        <a href="#installation" class="nav-link">Installation</a>
+        <a href="#main_concepts" class="nav-link">Main Concepts</a>
+        <a href="#advanced_guides" class="nav-link">Advanced Guides</a>
+        <a href="#testing" class="nav-link">Testing</a>
+        <a href="#contributing" class="nav-link">Contributing</a>
+    </nav>
     <main id="main-doc">
         <section class="main-section" id="installation">
             <h1>Installation</h1>
             <p><strong>Getting Started</strong></p>
             <p>React is a JavaScript library for building user interfaces. 
-                Learn what React is all about on our homepage or in the tutorial. 
+                Learn what React is all about on our <a href="https://reactjs.org/">homepage</a>. 
                 People come to React from different backgrounds and with different learning styles. 
                 Whether you prefer a more theoretical or a practical approach, we hope you’ll find this section helpful. 
                 If you prefer to learn by doing, start with our practical tutorial. 
                 If you prefer to learn concepts step by step, start with our guide to main concepts.
                 Like any unfamiliar technology, React does have a learning curve. With practice and some patience, you will get the hang of it.
             </p>
+            <pre>
+                <code>
+                    npx create-react-app my-app
+                    cd my-app
+                    npm start   
+                </code>
+            </pre>
         </section>
-        
         <section class="main-section" id="main_concepts">
             <h1>Main Concepts</h1>
             <p><strong>Hello World!</strong> The simplest React example looks like this:</p>
             <p>It displays a heading saying “Hello, world!” on the page.
-                Click CodePen to open an online editor. Feel free to make some changes, and see how they affect the output. 
+                Click <a href="https://codepen.io/pen">CodePen</a> to open an online editor. Feel free to make some changes, and see how they affect the output. 
                 Most pages in this guide will have editable examples like this one.
             </p>
+            <pre>
+                <code>
+                    ReactDOM.render(
+                        &lt;h1&gt;Hello, world!&lt;/h1&gt;,
+                        document.getElementById('root')
+                        );
+                </code>
+            </pre>    
         </section>
 
         <section class="main-section" id="advanced_guides">
-            <h1>Advanced guides</h1>
-            <p><strong> Web Accessibility Initiative - Accessible Rich Internet Applications (WAI-ARIA)</strong></p> 
+            <h1>Advanced Guides</h1>
+            <p><strong><a href="https://www.w3.org/WAI/standards-guidelines/aria/">Web Accessibility Initiative - Accessible Rich Internet Applications</a>(WAI-ARIA)</strong></p> 
             <p>Note that all aria-* HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be hyphen-cased (also known as kebab-case, lisp-case, etc) as they are in plain HTML:</p>
+            <pre>
+                <code>
+                    &lt;input
+                    type="text"
+                    aria-label={labelText}
+                    aria-required="true"
+                    onChange={onchangeHandler}
+                    value={inputValue}
+                    name="name"
+                    /&gt;
+                </code>
+            </pre>
         </section> 
 
         <section class="main-section" id="testing">
             <h1>Testing</h1>
             <p><strong>Set Up/Tear Down</strong></p> 
-            <p>For each test, we usually want to render our React tree to a DOM element that’s attached to document. This is important so that it can receive DOM events. 
+            <p>This setup assumes you are using <a href="https://jestjs.io/">Jest</a>. For each test, we usually want to render our React tree to a DOM element that’s attached to document. 
+                This is important so that it can receive DOM events. 
                 When the test ends, we want to “clean up” and unmount the tree from the document.
                 A common way to do it is to use a pair of beforeEach and afterEach blocks so that they’ll always run and isolate the effects of a test to itself:
             </p>
+            <pre>
+                <code>
+                    import { unmountComponentAtNode } from "react-dom";
+    
+                    let container = null;
+                    beforeEach(() =&gt; {
+                        // setup a DOM element as a render target
+                        container = document.createElement("div");
+                        document.body.appendChild(container);
+                    });
+                    
+                    afterEach(() =&gt; {
+                        // cleanup on exiting
+                        unmountComponentAtNode(container);
+                        container.remove();
+                        container = null;
+                    });
+                </code>
+            </pre>
             </section>
 
         <section class="main-section" id="contributing">
             <h1>Contributing</h1>
             <p><strong>Code of Conduct</strong> Facebook has adopted a Code of Conduct that we expect project participants to adhere to. Please read the full text so that you can understand what actions will and will not be tolerated. 
+                All work on React happens directly on <a href="https://github.com/facebook/react">GitHub</a>.
             </p>
             <p>If you want to try your changes in your existing React project, you may copy build/dist/react.development.js, build/dist/react-dom.development.js, or any other build products into your app and use them instead of the stable version. 
                 If your project uses React from npm, you may delete react and react-dom in its dependencies and use yarn link to point them to your local build folder:
             </p>
+            <pre>
+                <code>
+                    cd ~/path_to_your_react_clone/build/node_modules/react
+                    yarn link
+                    cd ~/path_to_your_react_clone/build/node_modules/react-dom
+                    yarn link
+                    cd /path/to/your/project
+                    yarn link react react-dom
+                </code>
+            </pre>
         </section>
     </main>
 </body>
