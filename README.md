@@ -17,6 +17,6 @@ Then create a new branch and continue.
 
 To make contributions, fork the repository and create a new branch then a pull request when done.
 
-### gitdeaLicense
+### License
 
 The content in this repository is not licensed.
